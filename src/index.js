@@ -1,28 +1,47 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import faker from "faker";
+import CommentDetail from "./CommentDetail";
+import ApprovalCard from "./ApprovalCard";
 
 const App = () => {
   return (
     <div className="ui container comments">
-      <div className="comment">
-        <a href="/" className="avatar">
-          {/* faker.image.avatar() will generate a fake avatar that it gets from the faker we imported above (See github repo of faker) */}
-          <img alt="avatar" src={faker.image.avatar()} />
-        </a>
+      {/* When we want to show a child component(<CommentDetail>) inside another component(<ApprovalCard>) and want to pass it in as a prop, we just enclose that component (<CommentDetail>) in an opening and closing tag (<ApprovalCard></ApprovalCard>) */}
 
-        <div className="content">
-          <a href="/" className="author">
-            Sam
-          </a>
-
-          <div className="metadata">
-            <span className="date">Today at 6PM</span>
-          </div>
-
-          <div className="text">Nice blog post!</div>
+      <ApprovalCard>
+        <div>
+          <h4>Warning!</h4>
+          Are you sure?
         </div>
-      </div>
+      </ApprovalCard>
+
+      <ApprovalCard>
+        <CommentDetail
+          author="Sam"
+          timeAgo="4:45PM"
+          text="cool"
+          avatar={faker.image.avatar()}
+        />
+      </ApprovalCard>
+
+      <ApprovalCard>
+        <CommentDetail
+          author="Jane"
+          timeAgo="6:45PM"
+          text="nice"
+          avatar={faker.image.avatar()}
+        />
+      </ApprovalCard>
+
+      <ApprovalCard>
+        <CommentDetail
+          author="Alex"
+          timeAgo="11:45PM"
+          text="ok"
+          avatar={faker.image.avatar()}
+        />
+      </ApprovalCard>
     </div>
   );
 };
